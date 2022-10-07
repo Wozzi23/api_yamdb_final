@@ -15,7 +15,7 @@ class GenreAdmin(admin.ModelAdmin):
 
 
 @admin.register(Category)
-class GenreAdmin(admin.ModelAdmin):
+class CategoryAdmin(admin.ModelAdmin):
     """Класс, формирующий админ-панель сайта, раздел: категории."""
     list_display = (
         'name', 'slug',
