@@ -1,13 +1,5 @@
 # Проект YaMDb
 
-<p align="center">
-<img  src="./readme_static/readme.png" width="80%">
-</p>
-
-<h1 align="center">YaMDb</h1>
-<h2 align="center">
-
--------------
 
 ## Описание проекта
 
@@ -17,8 +9,12 @@
 -------------
 
 ## Команда проекта:
-
-[Morimonster](https://github.com/Morimonster)   [Skayzer8](https://github.com/Skayzer8)    [Wozzi23](https://github.com/Wozzi23)
+    
+[Skayzer8](https://github.com/Skayzer8)
+    
+[Morimonster](https://github.com/Morimonster)
+    
+[Wozzi23](https://github.com/Wozzi23)   
 
 -------------
 
@@ -52,19 +48,51 @@
     Django 2.2
     Django Rest Framework
     Simple-JWT
-    SQLite
+    PostgreSQL
+    Docker
+    Gunicorn
+    Nginx
 
 -------------
 
-## Запуск контейнера
+## Установка
 
-1. Загрузите контейнер на свой компьютер:
-    - docker pull wozzi56/api_yambd:v1.0
-2. Запустите сборку контейнеров Docker-compose:
-    - docker-compose up
-4. Установите зависимости:
-    - docker-compose exec web python manage.py migrate
+1. Clone the repository to your PC:
+    - git@github.com:Wozzi23/api_yamdb_final.git
+2. Go to the project directory:
+    - cd api_yamdb_final
+3. Add .env file in the infra/ directory and describe next variables:
+    
+    DB_ENGINE=django.db.backends.postgresql
+    
+    DB_NAME= name your database
+    
+    POSTGRES_USER= login DB's user
+    
+    POSTGRES_PASSWORD= password DB's user
+    
+    DB_HOST=db
+    
+    DB_PORT=5432
+    
+    SECRET_KEY='django-token'
+    
+4. Go to the infra directory and compose image (need docker-compose):
+    - cd infra
+    - docker-compose up -d --build
+5. After launch, in additional terminal run next commands:
+    5.1. Perform migrations:
+        - docker-compose exec web python manage.py migrate
+    5.2. Collect static your project:
+        - docker-compose exec web python manage.py collectstatic --no-input
+    5.3. Create superuser your project:
+        - docker-compose exec web python manage.py createsuperuser
 
+Аfter all the steps, the project is available at:
+http://127.0.0.1
+
+Admin panel available at:
+http://127.0.0.1/admin/
 
 -------------
 
